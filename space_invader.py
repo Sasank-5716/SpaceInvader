@@ -20,3 +20,8 @@ RED = (255, 0, 0)
 player_width, player_height = 50, 30
 player = pygame.Rect(WIDTH//2 - player_width//2, HEIGHT - player_height - 20, player_width, player_height)
 player_speed = 5
+
+# Bullets
+bullets = []
+bullet_width, bullet_height = 5, 15
+bullet_speed = 7
