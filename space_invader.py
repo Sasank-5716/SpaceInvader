@@ -44,3 +44,9 @@ for row in range(enemy_rows):
             enemy_height
         )
         enemies.append(enemy)
+
+
+# Enemy bullets
+enemy_bullets = []
+enemy_bullet_speed = 5
+enemy_shoot_chance = 0.01  # 1% chance per frame per enemy
