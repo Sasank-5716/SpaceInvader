@@ -181,3 +181,35 @@ while True:
                         enemy_height
                     )
                     enemies.append(enemy)
+
+    # Drawing
+    screen.fill(BLACK)
+    
+    # Draw player
+    pygame.draw.rect(screen, GREEN, player)
+    
+    # Draw bullets
+    for bullet in bullets:
+        pygame.draw.rect(screen, WHITE, bullet)
+    
+    # Draw enemies
+    for enemy in enemies:
+        pygame.draw.rect(screen, RED, enemy)
+    
+    # Draw enemy bullets
+    for bullet in enemy_bullets:
+        pygame.draw.rect(screen, WHITE, bullet)
+    
+    # Draw score and lives
+    score_text = font.render(f"Score: {score}", True, WHITE)
+    lives_text = font.render(f"Lives: {lives}", True, WHITE)
+    screen.blit(score_text, (10, 10))
+    screen.blit(lives_text, (WIDTH - 120, 10))
+    
+    # Game over message
+    if game_over:
+        game_over_text = font.render("GAME OVER - Press R to restart", True, WHITE)
+        screen.blit(game_over_text, (WIDTH//2 - 180, HEIGHT//2))
+    
+    pygame.display.flip()
+    clock.tick(60)
