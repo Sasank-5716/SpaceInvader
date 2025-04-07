@@ -50,3 +50,9 @@ for row in range(enemy_rows):
 enemy_bullets = []
 enemy_bullet_speed = 5
 enemy_shoot_chance = 0.01  # 1% chance per frame per enemy
+
+# Game variables
+score = 0
+lives = 3
+font = pygame.font.Font(None, 36)
+game_over = False
