@@ -56,3 +56,38 @@ score = 0
 lives = 3
 font = pygame.font.Font(None, 36)
 game_over = False
+
+# Game loop
+clock = pygame.time.Clock()
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE and not game_over:
+                bullet = pygame.Rect(
+                    player.x + player_width//2 - bullet_width//2,
+                    player.y,
+                    bullet_width,
+                    bullet_height
+                )
+                bullets.append(bullet)
+            if event.key == pygame.K_r and game_over:
+                # Reset game
+                enemies = []
+                for row in range(enemy_rows):
+                    for col in range(enemy_cols):
+                        enemy = pygame.Rect(
+                            100 + col * (enemy_width + 20),
+                            50 + row * (enemy_height + 20),
+                            enemy_width,
+                            enemy_height
+                        )
+                        enemies.append(enemy)
+                bullets = []
+                enemy_bullets = []
+                score = 0
+                lives = 3
+                game_over = False
