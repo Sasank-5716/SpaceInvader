@@ -91,3 +91,49 @@ while True:
                 score = 0
                 lives = 3
                 game_over = False
+
+        if not game_over:
+        # Player movement
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT] and player.left > 0:
+            player.x -= player_speed
+        if keys[pygame.K_RIGHT] and player.right < WIDTH:
+            player.x += player_speed
+        
+        # Bullet movement
+        for bullet in bullets[:]:
+            bullet.y -= bullet_speed
+            if bullet.bottom < 0:
+                bullets.remove(bullet)
+        
+        # Enemy movement
+        move_down = False
+        for enemy in enemies:
+            if enemy.right + enemy_speed * enemy_direction > WIDTH or enemy.left + enemy_speed * enemy_direction < 0:
+                move_down = True
+                break
+        
+        if move_down:
+            enemy_direction *= -1
+            for enemy in enemies:
+                enemy.y += 20
+        else:
+            for enemy in enemies:
+                enemy.x += enemy_speed * enemy_direction
+        
+        # Enemy shooting
+        for enemy in enemies:
+            if random.random() < enemy_shoot_chance:
+                enemy_bullet = pygame.Rect(
+                    enemy.x + enemy_width//2 - bullet_width//2,
+                    enemy.y + enemy_height,
+                    bullet_width,
+                    bullet_height
+                )
+                enemy_bullets.append(enemy_bullet)
+        
+        # Enemy bullet movement
+        for bullet in enemy_bullets[:]:
+            bullet.y += enemy_bullet_speed
+            if bullet.top > HEIGHT:
+                enemy_bullets.remove(bullet)
