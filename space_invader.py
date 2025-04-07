@@ -92,7 +92,7 @@ while True:
                 lives = 3
                 game_over = False
 
-        if not game_over:
+    if not game_over:
         # Player movement
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] and player.left > 0:
