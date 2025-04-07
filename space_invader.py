@@ -137,3 +137,47 @@ while True:
             bullet.y += enemy_bullet_speed
             if bullet.top > HEIGHT:
                 enemy_bullets.remove(bullet)
+
+        # Collision detection
+        # Bullets hitting enemies
+        for bullet in bullets[:]:
+            for enemy in enemies[:]:
+                if bullet.colliderect(enemy):
+                    if bullet in bullets:
+                        bullets.remove(bullet)
+                    if enemy in enemies:
+                        enemies.remove(enemy)
+                    score += 10
+                    break
+        
+        # Enemy bullets hitting player
+        for bullet in enemy_bullets[:]:
+            if bullet.colliderect(player):
+                enemy_bullets.remove(bullet)
+                lives -= 1
+                if lives <= 0:
+                    game_over = True
+        
+        # Enemies reaching bottom
+        for enemy in enemies:
+            if enemy.bottom >= HEIGHT:
+                game_over = True
+        
+        # Player hitting enemies
+        for enemy in enemies:
+            if player.colliderect(enemy):
+                game_over = True
+        
+        # Win condition
+        if not enemies:
+            # Level complete (for simplicity, just reset)
+            enemies = []
+            for row in range(enemy_rows):
+                for col in range(enemy_cols):
+                    enemy = pygame.Rect(
+                        100 + col * (enemy_width + 20),
+                        50 + row * (enemy_height + 20),
+                        enemy_width,
+                        enemy_height
+                    )
+                    enemies.append(enemy)
