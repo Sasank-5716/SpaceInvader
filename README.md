@@ -2,6 +2,8 @@
 
 A Python implementation of the classic Space Invaders game using Pygame.
 
+![Game Screenshot](./Screenshot.png)
+
 ## Features
 - Player ship with movement controls
 - Enemy waves that move horizontally and descend
