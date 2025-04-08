@@ -49,7 +49,7 @@ for row in range(enemy_rows):
 # Enemy bullets
 enemy_bullets = []
 enemy_bullet_speed = 3
-enemy_shoot_chance = 0.005  # 1% chance per frame per enemy
+enemy_shoot_chance = 0.005
 
 # Game variables
 score = 0
